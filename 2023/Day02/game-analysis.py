@@ -27,7 +27,7 @@ def is_game_possible(game):
                 return False
     return True
 
-with open('2023/Day2/input.txt') as f:
+with open('2023/Day02/input.txt') as f:
     lines = f.readlines()
     for line in lines:
         line_parts = line.split(': ')
