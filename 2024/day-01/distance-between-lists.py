@@ -13,13 +13,24 @@ with open('2024/day-01/input.txt') as f:
         secondNumber = int(res[1])
         secondList.append(secondNumber)
 
-firstList.sort()
-secondList.sort()
+class SimilarNumber:
+    frequency = 1
+    similarityScore = 0
+    def __init__(self, number):
+        self.number = number
 
-for idx, firstListNum in enumerate(firstList):
-    secondListNum = secondList[idx]
-    absDiff = abs(firstListNum - secondListNum)
-    totalDistance += absDiff
+distinctNumsInFirstList = list(set(firstList))
+similarityList = []
 
+for number in distinctNumsInFirstList:
+    similarNumber = SimilarNumber(number)
+    similarNumber.frequency = firstList.count(number)
+    secondListOccurences = secondList.count(number)
+    similarNumber.similarityScore = number * similarNumber.frequency * secondListOccurences
+    similarityList.append(similarNumber)
 
-print("Result:", totalDistance)
+similarityScores = [sn.similarityScore for sn in similarityList]
+
+totalSimilarityScore = sum(similarityScores)
+
+print("Result:", totalSimilarityScore)
