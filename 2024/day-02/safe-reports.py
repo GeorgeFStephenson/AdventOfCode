@@ -1,5 +1,4 @@
 import re
-import math
 
 sign = lambda x: (x > 0) - (x < 0)
 
