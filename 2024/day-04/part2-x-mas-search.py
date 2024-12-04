@@ -4,7 +4,7 @@ count = 0
 search_word = "MAS"
 search_word_len = len(search_word)
 search_word_range = search_word_len-1
-vectors = [[1,1],[-1,1],[1,-1],[-1,-1]]
+vectors = [[1,1],[-1,-1]]
 
 with open('2024/day-04/input.txt') as f:
     rows = list(map(lambda line: re.findall(r'[A-Z]+', line)[0], f.readlines()))
@@ -42,11 +42,8 @@ for y_idx, row in enumerate(rows):
             if not word_found(x_idx, y_idx, x_dir, y_dir):
                 continue
 
-            # these are two possible cross patterns
+            # these are the two possible cross patterns
             if word_found(x_idx+x_dir*2, y_idx, -x_dir, y_dir) or word_found(x_idx, y_idx+y_dir*2, x_dir, -y_dir):
                 count+=1        
 
-# this is gonna match each cross twice
-result = int(count / 2)
-
-print("Result:", result)
+print("Result:", count)
