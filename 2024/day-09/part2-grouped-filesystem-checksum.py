@@ -23,7 +23,7 @@ for number_str in number_sequence:
         disk_map.append([current_id, number])
         id_count[current_id] = number
         current_id += 1
-    else:
+    elif number > 0:
         disk_map.append([None, number])
     is_file = not is_file
 
