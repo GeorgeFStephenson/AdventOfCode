@@ -14,36 +14,43 @@ with open('2024/day-09/input.txt') as f:
     number_sequence = f.read().strip()
 
 disk_map = []
+id_count = {}
 current_id = 0
 is_file = True
 for number_str in number_sequence:
     number = int(number_str)
     if is_file:
-        disk_map.extend([current_id] * number)
+        disk_map.append([current_id, number])
+        id_count[current_id] = number
         current_id += 1
     else:
-        disk_map.extend([None] * number)
+        disk_map.append([None, number])
     is_file = not is_file
 
-for last_number in range(max(filter(lambda x: x is not None, disk_map)), 0, -1):
-    last_number_len = disk_map.count(last_number)
+reversed_disk_map = list(reversed(disk_map))
+max_number = max(id_count.keys())
+for last_number in range(max_number, 0, -1):
+    last_number_len = id_count[last_number]
+    current_last_number_idx = disk_map.index([last_number, last_number_len])
 
-    gap_idx = disk_map.index(None)
-    while gap_idx < disk_map.index(last_number):
-        gap_len = find_gap_length(disk_map, gap_idx)
-        if gap_len < last_number_len:
-            gap_idx = disk_map.index(None, gap_idx+gap_len)
-        else:
-            while last_number in disk_map:
-                disk_map[disk_map.index(last_number)] = None
-            for n in range(last_number_len):
-                disk_map[gap_idx+n] = last_number            
+    for idx, header in enumerate(disk_map[:current_last_number_idx]):
+        if header[0] == None and header[1] >= last_number_len:
+            disk_map[current_last_number_idx] = [None, last_number_len]
+            gap_size = header[1]
+            disk_map[idx] = [last_number, last_number_len]
+            if gap_size > last_number_len:
+                disk_map.insert(idx+1, [None, gap_size-last_number_len])
             break
 
 total = 0
 
-for idx, item in enumerate(disk_map):
-    if item is not None:
-        total += item * idx
+position = 0
+for item, size in disk_map:
+    if item is None:
+        position += size
+    else:
+        for n in range(size):
+            total += item * position
+            position += 1
 
 print("Result:", total)
