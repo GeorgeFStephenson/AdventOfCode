@@ -1,6 +1,3 @@
-import re
-import itertools
-
 with open('2024/day-09/input.txt') as f:
     number_sequence = f.read().strip()
 

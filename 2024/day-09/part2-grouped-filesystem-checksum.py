@@ -1,15 +1,3 @@
-import re
-import itertools
-
-def find_gap_length(disk_map, start_idx):
-    gap_length = 1
-    next_digit = None
-    while next_digit is None and start_idx+gap_length <= len(disk_map)-1:
-        next_digit = disk_map[start_idx+gap_length]
-        if next_digit is None:
-            gap_length += 1
-    return gap_length
-
 with open('2024/day-09/input.txt') as f:
     number_sequence = f.read().strip()
 
@@ -17,6 +5,7 @@ disk_map = []
 id_count = {}
 current_id = 0
 is_file = True
+
 for number_str in number_sequence:
     number = int(number_str)
     if is_file:
@@ -43,8 +32,8 @@ for last_number in range(max_number, 0, -1):
             break
 
 total = 0
-
 position = 0
+
 for item, size in disk_map:
     if item is None:
         position += size
