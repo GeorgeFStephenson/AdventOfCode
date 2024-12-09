@@ -17,11 +17,12 @@ for number_str in number_sequence:
     is_file = not is_file
 
 for idx, item in enumerate(disk_map):
-    if item is None:
-        swapped_digit = None
-        while swapped_digit is None:
-            swapped_digit = disk_map.pop()
-        disk_map[idx] = swapped_digit
+    if item is not None:
+        continue
+    swapped_digit = None
+    while swapped_digit is None:
+        swapped_digit = disk_map.pop()
+    disk_map[idx] = swapped_digit
 
 if disk_map[-1] is None:
     disk_map.pop()
