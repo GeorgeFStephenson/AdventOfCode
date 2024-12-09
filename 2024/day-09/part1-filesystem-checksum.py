@@ -34,8 +34,6 @@ for idx, item in enumerate(copy_disk_map):
 if disk_map[-1] == None:
     disk_map.pop()
 
-sum = 0
-for idx, item in enumerate(disk_map):
-    sum += idx * item
+total = sum(idx * item for idx, item in enumerate(disk_map))
 
-print("Result:", sum)
+print("Result:", total)
