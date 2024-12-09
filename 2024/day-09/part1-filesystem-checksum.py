@@ -2,36 +2,28 @@ import re
 import itertools
 
 with open('2024/day-09/input.txt') as f:
-    input = f.read().strip()
+    number_sequence = f.read().strip()
 
 disk_map = []
-
-id = 0
+current_id = 0
 is_file = True
-for number_str in input:
+for number_str in number_sequence:
     number = int(number_str)
-
     if is_file:
-        for _ in itertools.repeat(None, number):
-            disk_map.append(id)
-        id += 1
+        disk_map.extend([current_id] * number)
+        current_id += 1
     else:
-        for _ in itertools.repeat(None, number):
-            disk_map.append(None)
-    
+        disk_map.extend([None] * number)
     is_file = not is_file
 
-copy_disk_map = list(disk_map)
-for idx, item in enumerate(copy_disk_map):
-    if idx > len(disk_map)-1:
-        break
+for idx, item in enumerate(disk_map):
     if item is None:
         swapped_digit = None
         while swapped_digit is None:
             swapped_digit = disk_map.pop()
         disk_map[idx] = swapped_digit
 
-if disk_map[-1] == None:
+if disk_map[-1] is None:
     disk_map.pop()
 
 total = sum(idx * item for idx, item in enumerate(disk_map))
