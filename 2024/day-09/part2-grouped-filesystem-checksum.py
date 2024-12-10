@@ -16,7 +16,6 @@ for number_str in number_sequence:
         disk_map.append([None, number])
     is_file = not is_file
 
-reversed_disk_map = list(reversed(disk_map))
 max_number = max(id_count.keys())
 for last_number in range(max_number, 0, -1):
     last_number_len = id_count[last_number]
