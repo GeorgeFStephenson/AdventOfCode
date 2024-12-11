@@ -31,10 +31,16 @@ def blink_stone(stone, iterations):
     stone_iteration_map[stone][iterations] = blink_stone(stone*2024, iterations-1)
     return stone_iteration_map[stone][iterations]
 
-blinks = 75
-
+blinks = 25
 count = 0
 for stone in stones:
     count += blink_stone(stone, blinks)
 
-print("Result:", count)
+print("Part 1 Result:", count)
+
+blinks = 75
+count = 0
+for stone in stones:
+    count += blink_stone(stone, blinks)
+
+print("Part 2 Result:", count)
