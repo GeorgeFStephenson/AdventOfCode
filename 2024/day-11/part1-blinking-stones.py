@@ -26,8 +26,8 @@ def blink_stone(stone, iterations):
         stone_iteration_map[stone][iterations] = blink_stone(first_stone, iterations-1) + blink_stone(second_stone, iterations-1)
         return stone_iteration_map[stone][iterations]
     if iterations == 1:
-            stone_iteration_map[stone][1] = 1
-            return 1
+        stone_iteration_map[stone][1] = 1
+        return 1
     stone_iteration_map[stone][iterations] = blink_stone(stone*2024, iterations-1)
     return stone_iteration_map[stone][iterations]
 
