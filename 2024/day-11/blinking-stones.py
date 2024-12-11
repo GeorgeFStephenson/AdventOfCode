@@ -1,10 +1,10 @@
-import functools
+from functools import cache
 import re
 
 with open('2024/day-11/input.txt') as f:
     stones = list(map(int, re.findall(r'\d+', f.readlines()[0])))
 
-@functools.cache
+@cache
 def blink_stone(stone, iterations):
     if stone == 0:
         if iterations == 1:
