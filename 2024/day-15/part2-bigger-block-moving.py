@@ -56,4 +56,4 @@ for mx, my in moves:
 boxes = np.argwhere(grid == '[')
 total = sum([100*y+x for y, x in boxes])
 
-print("Part 1 Result:", total)
+print("Part 2 Result:", total)
