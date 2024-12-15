@@ -38,11 +38,7 @@ while not christmas_tree:
     for robot in robots:
         robot.x = (robot.x + robot.vx) % (max_x+1)
         robot.y = (robot.y + robot.vy) % (max_y+1)
-        if seconds >= 8000:
-            grid[robot.y][robot.x] = 1
-
-    if seconds < 8000:
-        continue
+        grid[robot.y][robot.x] = 1
 
     for robot in robots:
         if not (tree_length-1 <= robot.x <= max_x-(tree_length-1) and robot.y <= max_y-(tree_length-1)):
